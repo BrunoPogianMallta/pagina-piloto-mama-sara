@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://janaluzastrologia.com.br/mama-sara-2027/sitemap.xml
