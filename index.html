@@ -188,6 +188,10 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 }
 .team{margin-top:40px;padding-top:32px;border-top:1px solid var(--line);text-align:left}
 .team h3{font-size:13px;font-weight:600;color:var(--ink-muted);margin-bottom:12px;text-align:center}
+.gaya{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:28px}
+.gaya img{width:72px;height:72px;border-radius:50%;object-fit:cover;border:3px solid rgba(184,90,50,.2);box-shadow:0 8px 20px -8px rgba(42,31,24,.2)}
+.gaya-name{font-size:14px;font-weight:600;color:var(--ink);margin:0}
+.gaya-role{font-size:12.5px;color:var(--ink-muted);margin:0}
 .team-l{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 24px;font-size:13px;color:var(--ink-soft)}
 .guarantee{background:linear-gradient(145deg,#6B3219,#4A2412);color:#FAF6F0;padding:64px 24px}
 .g-g{max-width:860px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;text-align:center}
@@ -430,10 +434,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
         "hasMerchantReturnPolicy": {
           "@type": "MerchantReturnPolicy",
           "applicableCountry": "BR",
-          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
-          "merchantReturnDays": 7,
-          "returnMethod": "https://schema.org/ReturnByMail",
-          "returnFees": "https://schema.org/FreeReturn"
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted"
         }
       },
       "aggregateRating": {
@@ -505,7 +506,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
           "name": "Qual a política de troca e devolução?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "7 dias de garantia pelo direito de arrependimento (CDC). Em caso de defeito, entre em contato pelo WhatsApp."
+            "text": "Em caso de defeito de fabricação, entre em contato pelo WhatsApp. Consulte a página de Políticas."
           }
         },
         {
@@ -547,15 +548,15 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <div class="trust-row">
 <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg> Frete grátis Brasil</span>
 <span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg> Postagem em até 7 dias</span>
-<span><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg> Garantia de 7 dias</span>
+
 </div>
 </div></div>
 </section>
 
 <div class="trust-bar"><div class="trust-bar-in">
-<div class="trust-item"><strong>Garantia de 7 dias</strong><p>Direito de arrependimento pelo CDC</p></div>
 <div class="trust-item"><strong>Frete grátis</strong><p>Para todo o Brasil, sem surpresas</p></div>
 <div class="trust-item"><strong>Postagem em até 7 dias</strong><p>Rastreio enviado pelo WhatsApp</p></div>
+<div class="trust-item"><strong>Pix ou cartão</strong><p>Checkout seguro</p></div>
 </div></div>
 
 <section class="manifesto"><div class="manifesto-in">
@@ -715,15 +716,21 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <span>Jaqueline Wisniewski — Papelaria</span>
 <span>Marcus Luz — Produto e estratégia</span>
 <span>Vinícius Luz — Editorial</span>
-<span>Gaya Maria — Assistente oficial 🐱</span>
+</div>
+<div class="gaya">
+<img src="images/gaya.jpg" alt="Gaya Maria — assistente oficial da coleção Mama Sara" width="120" height="120" loading="lazy"/>
+<div>
+<p class="gaya-name">Gaya Maria</p>
+<p class="gaya-role">Assistente oficial 🐱</p>
+</div>
 </div>
 </div>
 </div></div></section>
 
 <section class="guarantee"><div class="g-g">
-<div class="g-item"><h3>7 dias</h3><p>Garantia pelo direito de arrependimento (CDC)</p></div>
 <div class="g-item"><h3>Frete grátis</h3><p>Para todo o Brasil, sem surpresas no valor</p></div>
 <div class="g-item"><h3>Até 7 dias</h3><p>Postagem + rastreio enviado no WhatsApp</p></div>
+<div class="g-item"><h3>Pix ou cartão</h3><p>Pagamento seguro no checkout</p></div>
 </div></section>
 
 <section id="faq" class="sec"><div class="sec-in">
@@ -733,7 +740,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <details class="faq-i"><summary>Qual o prazo e como funciona o frete?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">Frete grátis para todo o Brasil. Postagem em até 7 dias úteis após confirmação do pagamento. O rastreio é enviado pelo WhatsApp.</div></details>
 <details class="faq-i"><summary>Posso comprar os itens separados?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">Sim. Agenda avulsa, Deck, Ritual e Ritual Completo (Ritual + Deck) podem ser adquiridos separadamente.</div></details>
 <details class="faq-i"><summary>Quais formas de pagamento?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">Pix (pelo WhatsApp) e cartão de crédito (via Kiwify, nos produtos que possuem link).</div></details>
-<details class="faq-i"><summary>Qual a política de troca e devolução?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">7 dias de garantia pelo direito de arrependimento (CDC). Em caso de defeito, entre em contato. Detalhes na <a href="politicas.html" style="color:var(--ember);text-decoration:underline">página de Políticas</a>.</div></details>
+<details class="faq-i"><summary>Qual a política de troca e devolução?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">Em caso de defeito de fabricação, entre em contato pelo WhatsApp. Detalhes na <a href="politicas.html" style="color:var(--ember);text-decoration:underline">página de Políticas</a>.</div></details>
 <details class="faq-i"><summary>O Deck serve só para 2027?<svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg></summary><div class="ans">Não. O Deck foi criado para ser consultado em qualquer momento — escolhas, novos ciclos ou sempre que precisar de perspectiva. Continua útil depois de 2027.</div></details>
 </div>
 </div></section>
@@ -742,7 +749,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 <h2>Pronta para cultivar 2027?</h2>
 <p>Box Completa com Agenda + Deck + Ritual</p>
 <p class="price">R$ 397</p>
-<p style="font-size:13px;color:var(--ink-muted);margin-bottom:0">de R$ 467 · frete grátis · garantia de 7 dias</p>
+<p style="font-size:13px;color:var(--ink-muted);margin-bottom:0">de R$ 467 · frete grátis · postagem em até 7 dias</p>
 <div class="acts">
 <button class="btn-m" onclick="openOrder('box-completa','Box Completa Mama Sara 2027',39700)">Quero a Box no Pix</button>
 <a href="https://pay.kiwify.com.br/c0oIn7d" target="_blank" rel="noopener" class="btn-s">Preferir cartão</a>
