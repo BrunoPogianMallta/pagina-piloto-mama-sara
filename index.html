@@ -104,12 +104,12 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .sec-label{font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--moss);margin-bottom:12px;text-align:center}
 .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.1rem,3.8vw,2.9rem);font-weight:600;color:var(--ink);text-align:center;line-height:1.18;margin-bottom:18px}
 .sec-sub{text-align:center;color:var(--ink-soft);font-size:1rem;max-width:520px;margin:0 auto 48px}
-.manifesto{background:linear-gradient(145deg,#8F4222 0%,#6B3219 100%);color:#FAF6F0;padding:80px 24px 110px;text-align:center;position:relative;overflow:hidden}
+.manifesto{background:linear-gradient(145deg,#8F4222 0%,#6B3219 100%);color:#FAF6F0;padding:100px 24px 110px;text-align:center;position:relative;overflow:hidden}
 .manifesto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 25% 20%,rgba(196,163,90,.18),transparent 55%);pointer-events:none}
 .manifesto-in{position:relative;max-width:640px;margin:0 auto}
 .manifesto-q{font-family:'Cormorant Garamond',serif;font-size:clamp(2.05rem,4.8vw,2.85rem);font-weight:500;line-height:1.5;margin:0 auto 40px;max-width:22ch;padding:36px 32px 32px;border:1px solid rgba(196,163,90,.4);border-radius:20px;background:rgba(0,0,0,.14);box-shadow:0 16px 48px -12px rgba(0,0,0,.4);letter-spacing:.01em}
 .manifesto-q em{font-style:italic;color:var(--gold);display:inline-block;margin-top:14px;font-size:1.08em}
-.manifesto p{font-size:1.12rem;color:rgba(250,246,240,.85);line-height:1.8;max-width:80ch;margin:0 auto;padding-top:8px}
+.manifesto p{font-size:1.25rem;color:rgba(250,246,240,.85);line-height:1.8;max-width:48ch;margin:0 auto;padding-top:8px}
 .story{display:grid;grid-template-columns:1fr 1fr;min-height:480px}
 .story-img{position:relative;overflow:hidden;background:var(--bg-soft)}
 .story-img img{width:100%;height:100%;object-fit:cover;min-height:280px}
@@ -144,7 +144,16 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .prod-ps .acts{display:flex;flex-direction:column;gap:8px}
 .prod-ps .btn-m,.prod-ps .btn-s{width:100%;font-size:14px;padding:12px 20px}
 .prod-g{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-.prod-card{background:#fff;border:1.5px solid rgba(184,90,50,.15);border-radius:18px;padding:32px;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s}
+.prod-card{background:#fff;border:1.5px solid rgba(184,90,50,.15);border-radius:18px;padding:0;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,border-color .3s;overflow:hidden}
+.prod-card{overflow:hidden;padding:0}
+.prod-card-img{width:100%;height:140px;overflow:hidden;background:var(--bg-soft)}
+.prod-card-img img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .4s ease}
+.prod-card:hover .prod-card-img img{transform:scale(1.03)}
+.prod-card h3,.prod-card .desc,.prod-card .price,.prod-card ul,.prod-card .acts{padding-left:28px;padding-right:28px}
+.prod-card h3{padding-top:18px}
+.prod-card .acts{padding-bottom:24px}
+@media(max-width:700px){.prod-card-img{height:120px}}
+
 .prod-card:hover{transform:translateY(-4px);box-shadow:0 20px 40px -12px rgba(184,90,50,.22);border-color:rgba(184,90,50,.4)}
 .prod-card h3{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;margin-bottom:4px}
 .prod-card .desc{font-size:12.5px;color:var(--ink-muted);margin-bottom:12px}
@@ -179,9 +188,9 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .t-card footer{font-size:14px;font-weight:600;color:var(--ink);display:flex;align-items:center;gap:12px}
 .t-av{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;flex-shrink:0}
 .author{max-width:900px;margin:0 auto}
-.author-grid{display:grid;grid-template-columns:280px 1fr;gap:48px;align-items:center}
+.author-grid{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center}
 .author-photo{position:relative}
-.author-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:20px;box-shadow:0 24px 48px -16px rgba(42,31,24,.2)}
+.author-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center top;border-radius:24px;box-shadow:0 28px 56px -16px rgba(42,31,24,.22)}
 .author-photo::after{content:'';position:absolute;inset:auto -12px -12px auto;width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--ember),var(--gold));opacity:.35;z-index:-1}
 .author-text{text-align:left}
 .author-text .sec-label{text-align:left;margin-bottom:10px}
@@ -192,7 +201,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none}
 .author a:hover{text-decoration:underline}
 @media(max-width:700px){
 .author-grid{grid-template-columns:1fr;gap:28px}
-.author-photo{max-width:260px;margin:0 auto}
+.author-photo{max-width:320px;margin:0 auto}
 .author-text{text-align:center}
 .author-text .sec-label{text-align:center}
 }
@@ -579,7 +588,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 
 <section id="colecao">
 <div class="story">
-<div class="story-img"><img src="images/agenda-capa.jpg" alt="Agenda Mama Sara com vela e cristal" loading="lazy"/ width="600" height="800" decoding="async"></div>
+<div class="story-img"><picture><source srcset="images/agenda-capa.webp" type="image/webp"/><img src="images/agenda-capa.jpg" alt="Agenda Mama Sara" width="600" height="800" loading="lazy" decoding="async"/></picture></div>
 <div class="story-txt"><div class="story-txt-in">
 <p class="lbl">A Agenda</p>
 <h2>Organização e céu no mesmo lugar</h2>
@@ -594,7 +603,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 <p>Para abrir reflexões, ampliar perspectivas e acompanhar escolhas em qualquer fase da vida.</p>
 <p>Consulte diante de uma decisão, de um novo ciclo ou sempre que precisar de uma nova perspectiva.</p>
 </div></div>
-<div class="story-img"><img src="images/agenda-aberta.jpg" alt="Deck de cartas Mama Sara" loading="lazy"/ width="600" height="800" decoding="async"></div>
+<div class="story-img"><img src="images/agenda-aberta.jpg" alt="Deck de cartas Mama Sara" loading="lazy" width="600" height="800" decoding="async"></div>
 </div>
 <div class="story">
 <div class="story-img"><picture><source srcset="images/mockups-produtos.webp" type="image/webp"/><img src="images/mockups-produtos.jpg" alt="Agenda e xícara Mama Sara" width="1000" height="563" loading="lazy" decoding="async"/></picture></div>
@@ -646,6 +655,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 </div>
 <div class="prod-g">
 <div class="prod-card">
+<div class="prod-card-img"><img src="images/prod-agenda.jpg" alt="Agenda Mama Sara 2027" width="480" height="300" loading="lazy" decoding="async"/></div>
 <h3>Agenda Avulsa</h3><p class="desc">Agenda Guia Astrológica 2027</p><p class="price">R$ 275</p>
 <ul><li>✓ Agenda completa</li><li>✓ Dados astrológicos dia a dia</li><li>✓ Espaço para planejamento</li></ul>
 <div class="acts">
@@ -654,6 +664,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 </div>
 </div>
 <div class="prod-card">
+<div class="prod-card-img"><img src="images/prod-deck.jpg" alt="Deck Mama Sara" width="480" height="300" loading="lazy" decoding="async"/></div>
 <h3>Deck Mama Sara</h3><p class="desc">Cartas terapêuticas</p><p class="price">R$ 118</p>
 <ul><li>✓ Deck completo</li><li>✓ Uso contínuo (não expira)</li><li>✓ Ideal para reflexões</li></ul>
 <div class="acts">
@@ -662,6 +673,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 </div>
 </div>
 <div class="prod-card">
+<div class="prod-card-img"><img src="images/mockups-produtos.webp" alt="Ritual Mama Sara" width="480" height="300" loading="lazy" decoding="async"/></div>
 <h3>Ritual Mama Sara</h3><p class="desc">Xícara + kit chá + vela</p><p class="price">R$ 99</p>
 <ul><li>✓ Xícara exclusiva</li><li>✓ Kit de chá</li><li>✓ Vela artesanal</li></ul>
 <div class="acts">
@@ -670,6 +682,7 @@ a[href*="netlify.com"][target],iframe[src*="netlify"]{display:none!important;vis
 </div>
 </div>
 <div class="prod-card">
+<div class="prod-card-img"><img src="images/prod-ritual-completo.jpg" alt="Ritual Completo Mama Sara" width="480" height="300" loading="lazy" decoding="async"/></div>
 <h3>Ritual Completo</h3><p class="desc">Ritual + Deck</p><p class="price">R$ 155</p>
 <ul><li>✓ Xícara + chá + vela</li><li>✓ Deck de Cartas Terapêuticas</li></ul>
 <div class="acts">
