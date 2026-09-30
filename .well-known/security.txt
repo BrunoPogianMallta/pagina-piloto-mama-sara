@@ -1,0 +1,3 @@
+Contact: mailto:jana.astroluz@gmail.com
+Canonical: https://janaluzastrologia.com.br/.well-known/security.txt
+Preferred-Languages: pt-BR, en
