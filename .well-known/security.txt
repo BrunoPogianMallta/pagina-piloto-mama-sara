@@ -1,3 +1,4 @@
 Contact: mailto:jana.astroluz@gmail.com
 Canonical: https://janaluzastrologia.com.br/.well-known/security.txt
 Preferred-Languages: pt-BR, en
+Expires: 2027-09-30T00:00:00.000Z

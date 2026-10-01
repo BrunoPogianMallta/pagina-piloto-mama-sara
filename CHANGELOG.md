@@ -10,3 +10,24 @@
 Não alterado (precisa de decisão): âncora "de R$ 467" (soma dos avulsos = R$ 492), "12x" sem valor, fotografia, self-host de fontes, analytics.
 
 **Botões (revisão):** altura única de 48px (btn-m e btn-s), secundário em moss (cor de ação única), rótulo "Pedir com Pix" (abre formulário -> WhatsApp), Ritual: "Cartão pelo WhatsApp".
+
+## 2026-09-30 — Otimização de assets e produção
+- Layout e conteúdo visual preservados.
+- Imagens raster usadas padronizadas em WebP; JPG/JPEG/PNG removidos.
+- Assets de imagem não referenciados removidos para reduzir o pacote.
+- Referências HTML, Open Graph, Twitter, JSON-LD e sitemap atualizadas para WebP.
+- Hero/LCP mantido com preload e `fetchpriority=high`; decodificação prioritária.
+- Inter servido localmente; Google Fonts reduzido a Cormorant Garamond.
+- `llms.txt` atualizado com links Markdown detectáveis.
+- Cache de fontes e headers COOP/CORP/HSTS reforçados.
+## Estrutura separada — HTML / CSS / JavaScript
+- CSS principal movido de `index.html` para `css/main.css`.
+- JavaScript funcional movido para `js/main.js`.
+- Bootstrap de progressive enhancement movido para `js/boot.js`.
+- CSS de `politicas.html` movido para `css/politicas.css`.
+- Estilos inline restantes convertidos em classes CSS.
+- Layout, textos e comportamento preservados.
+
+
+## v3
+Cormorant self-host; CSP sem `unsafe-inline` e sem origens externas; handlers inline -> data-attrs; Pix: máscaras, validação, tela de confirmação com link e cópia; hero/CTA final: cartão direto + Pix; analytics sem cookies + UTM; favicon.ico/SVG, ícones PNG, OG JPG 1200x630; JSON-LD com FAQ = texto visível; transições (reveal, header, scrollspy, settle); layout tablet/mobile; limpeza de órfãos; security.txt com Expires; redirect /politicas como rewrite.
