@@ -4,7 +4,7 @@ Allow: /
 # Sitemaps
 Sitemap: https://janaluzastrologia.com.br/sitemap.xml
 
-# AI / LLM crawlers (optional allow)
+# AI / LLM crawlers
 User-agent: GPTBot
 Allow: /
 
@@ -18,4 +18,7 @@ User-agent: Anthropic-AI
 Allow: /
 
 User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
 Allow: /
