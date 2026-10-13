@@ -363,3 +363,11 @@ h1,h2,h3{text-wrap:balance}p{text-wrap:pretty}
   .sticky .btn-m { flex: 0 0 auto; min-height: 44px; padding: 0 16px; white-space: nowrap; }
   .sticky-info { flex: 1 1 auto; min-width: 0; }
 }
+/* Esconder a barra sem desativar a rolagem */
+html {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
