@@ -27,7 +27,10 @@ function refreshProductPrices(){
   write('.prod-ps .old',brl(black?regularPrices['box-completa']:46700));
   write('.prod-ps .cur',brl(box));
   write('.prod-ps .save','Economia de '+brl(black?regularPrices['box-completa']-box:7000));
-  write('.prod-feat-badge','Mais escolhida');
+  write('.prod-feat-badge',black?'✦ BLACK FRIDAY · MAIS ESCOLHIDA':'Mais escolhida');
+  var heroBadge=$('.hero .badge');
+  if(heroBadge)heroBadge.textContent=black?'✦ BLACK FRIDAY · ATÉ 29/11':'✦ Edição 2027';
+  document.body.classList.toggle('bf-active',black);
   write('.final-cta .price',brl(box));
   write('.final-cta .final-meta','de '+brl(black?regularPrices['box-completa']:46700)+' · frete grátis · postagem em até 7 dias');
   write('.sticky-info strong',brl(box));
@@ -36,13 +39,49 @@ function refreshProductPrices(){
     if(!Object.prototype.hasOwnProperty.call(regularPrices,slug))return;
     var card=button.closest('.prod-card'),display=card&&$('.price',card);
     if(!display)return;
-    if(black&&blackPrices[slug]){
+    var offer=black&&Object.prototype.hasOwnProperty.call(blackPrices,slug);
+    card.classList.toggle('bf-product',offer);
+    if(offer){
       display.innerHTML='<del class="black-original">'+brl(regularPrices[slug])+'</del><span class="black-price">'+brl(prices[slug])+'</span>';
-    }else display.textContent=brl(prices[slug]);
+      var badge=$('.bf-card-badge',card);
+      if(!badge){
+        badge=document.createElement('span');
+        badge.className='bf-card-badge';
+        badge.textContent='✦ BLACK FRIDAY';
+        $('.prod-card-img',card).appendChild(badge);
+      }
+      var savings=$('.bf-card-savings',card);
+      if(!savings){
+        savings=document.createElement('div');
+        savings.className='bf-card-savings';
+        display.insertAdjacentElement('afterend',savings);
+      }
+      savings.innerHTML='<strong>Economize '+brl(regularPrices[slug]-prices[slug])+'</strong><span>Oferta até 29/11</span>';
+    }else{
+      display.textContent=brl(prices[slug]);
+      var badge=$('.bf-card-badge',card);
+      if(badge)badge.remove();
+      var savings=$('.bf-card-savings',card);
+      if(savings)savings.remove();
+    }
   });
-  $$('[data-order][data-slug]').forEach(function(button){
+  $('[data-order][data-slug]').forEach(function(button){
     if(Object.prototype.hasOwnProperty.call(prices,button.dataset.slug))button.dataset.price=prices[button.dataset.slug];
   });
+  $('.prod-card .acts button[data-order],.prod-feat .acts button[data-order]').forEach(function(button){
+    var slug=button.dataset.slug;
+    if(!Object.prototype.hasOwnProperty.call(blackPrices,slug))return;
+    if(!button.dataset.regularText)button.dataset.regularText=button.textContent.trim();
+    button.textContent=black?'Aproveitar Black Friday no Pix':button.dataset.regularText;
+  });
+  var boxDeadline=$('.bf-box-deadline');
+  if(black&&!boxDeadline){
+    boxDeadline=document.createElement('p');
+    boxDeadline.className='bf-box-deadline';
+    boxDeadline.textContent='✦ Oferta especial até 29/11';
+    var save=$('.prod-ps .save');
+    if(save)save.insertAdjacentElement('afterend',boxDeadline);
+  }else if(!black&&boxDeadline)boxDeadline.remove();
   var upsell=$('.upsell');
   if(upsell&&upsell.firstChild)upsell.firstChild.textContent='Por +'+brl(box-agenda)+' leve a ';
   $$('.faq-i .ans').forEach(function(answer){
