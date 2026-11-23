@@ -2,6 +2,76 @@
 var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){return[].slice.call((r||document).querySelectorAll(s))};
 var WA='5541991397148',reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+
+/* ---------- Black Friday 2026: 25 a 29/11, horário de Brasília ---------- */
+var regularPrices={'box-completa':39700,agenda:24500,deck:11900,ritual:7500,'ritual-completo':17900};
+var blackPrices={'box-completa':36500,agenda:21000,deck:8990};
+var brl=function(cents){return(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
+var lastBlackState;
+function blackFridayActive(){
+  var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
+  var date={};
+  parts.forEach(function(p){if(p.type==='year'||p.type==='month'||p.type==='day')date[p.type]=Number(p.value)});
+  return date.year===2026&&date.month===11&&date.day>=25&&date.day<=29;
+}
+function refreshProductPrices(){
+  var black=blackFridayActive();
+  if(lastBlackState===black)return;
+  lastBlackState=black;
+  var prices=Object.assign({},regularPrices,black?blackPrices:{});
+  var box=prices['box-completa'],agenda=prices.agenda,deck=prices.deck;
+  function write(selector,value){var el=$(selector);if(el)el.textContent=value}
+  write('.hero .price-cur',brl(box));
+  write('.hero .price-old',brl(black?regularPrices['box-completa']:46700));
+  write('.hero .price-save','Economia de '+brl(black?regularPrices['box-completa']-box:7000));
+  write('.prod-ps .old',brl(black?regularPrices['box-completa']:46700));
+  write('.prod-ps .cur',brl(box));
+  write('.prod-ps .save','Economia de '+brl(black?regularPrices['box-completa']-box:7000));
+  write('.prod-feat-badge',black?'Black Friday · 25 a 29/11':'Mais escolhida');
+  write('.final-cta .price',brl(box));
+  write('.final-cta .final-meta','de '+brl(black?regularPrices['box-completa']:46700)+' · frete grátis · postagem em até 7 dias');
+  write('.sticky-info strong',brl(box));
+  $$('.prod-card [data-order][data-slug]').forEach(function(button){
+    var slug=button.dataset.slug;
+    if(!Object.prototype.hasOwnProperty.call(regularPrices,slug))return;
+    var card=button.closest('.prod-card'),display=card&&$('.price',card);
+    if(!display)return;
+    if(black&&blackPrices[slug]){
+      display.innerHTML='<del class="black-original">'+brl(regularPrices[slug])+'</del><span class="black-price">'+brl(prices[slug])+'</span>';
+    }else display.textContent=brl(prices[slug]);
+  });
+  $$('[data-order][data-slug]').forEach(function(button){
+    if(Object.prototype.hasOwnProperty.call(prices,button.dataset.slug))button.dataset.price=prices[button.dataset.slug];
+  });
+  var upsell=$('.upsell');
+  if(upsell&&upsell.firstChild)upsell.firstChild.textContent='Por +'+brl(box-agenda)+' leve a ';
+  $$('.faq-i .ans').forEach(function(answer){
+    if(answer.textContent.trim().indexOf('Sim: Agenda Avulsa por')===0){
+      answer.textContent='Sim: Agenda Avulsa por '+brl(agenda)+'; Deck Avulso por '+brl(deck)+'; Ritual Mama Sara 2027 (xícara + vela) por '+brl(prices.ritual)+'; e Ritual Mama Sara 2027 + Deck por '+brl(prices['ritual-completo'])+'.';
+    }
+  });
+  var priceMeta=$('meta[property="product:price:amount"]');
+  if(priceMeta)priceMeta.content=(box/100).toFixed(2);
+  var og=$('meta[property="og:description"]'),tw=$('meta[name="twitter:description"]');
+  if(og)og.content='Agenda Guia Astrológica 2027 + Deck + Ritual. Box de '+brl(black?regularPrices['box-completa']:46700)+' por '+brl(box)+'. Frete grátis. Por Janaína Luz, astróloga.';
+  if(tw)tw.content='Agenda Guia Astrológica 2027 + Deck + Ritual. '+brl(box)+' com frete grátis. Ciclos lunares e planejamento por Janaína Luz.';
+  $$('script[type="application/ld+json"]').forEach(function(script){
+    try{
+      var data=JSON.parse(script.textContent);
+      function sync(node){
+        if(!node||typeof node!=='object')return;
+        if(node['@type']==='Product'&&node.offers&&node.offers.price)node.offers.price=(box/100).toFixed(2);
+        if(node['@type']==='Question'&&node.name==='Posso comprar os itens separados?'&&node.acceptedAnswer)node.acceptedAnswer.text='Sim: Agenda Avulsa por '+brl(agenda)+'; Deck Avulso por '+brl(deck)+'; Ritual Mama Sara 2027 (xícara + vela) por '+brl(prices.ritual)+'; e Ritual Mama Sara 2027 + Deck por '+brl(prices['ritual-completo'])+'.';
+        Object.keys(node).forEach(function(k){var v=node[k];if(Array.isArray(v))v.forEach(sync);else if(v&&typeof v==='object')sync(v)});
+      }
+      sync(data);script.textContent=JSON.stringify(data);
+    }catch(e){}
+  });
+}
+refreshProductPrices();
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')refreshProductPrices()});
+setInterval(refreshProductPrices,60000);
+
 /* ---------- Origem (UTM / referrer), só em sessionStorage ---------- */
 var UTM={};
 try{UTM=JSON.parse(sessionStorage.getItem('ms_utm')||'{}');var q=new URLSearchParams(location.search),f=false;
