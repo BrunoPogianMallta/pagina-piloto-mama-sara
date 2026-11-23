@@ -3,7 +3,7 @@ var $=function(s,r){return(r||document).querySelector(s)},$$=function(s,r){retur
 var WA='5541991397148',reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 
-/* ---------- Black Friday 2026: 25 a 29/11, horário de Brasília ---------- */
+/* ---------- Black Friday 2026: 22 a 29/11, horário de Brasília ---------- */
 var regularPrices={'box-completa':39700,agenda:24500,deck:11900,ritual:7500,'ritual-completo':17900};
 var blackPrices={'box-completa':36500,agenda:21000,deck:8990};
 var brl=function(cents){return(cents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'})};
@@ -12,7 +12,7 @@ function blackFridayActive(){
   var parts=new Intl.DateTimeFormat('en-US',{timeZone:'America/Sao_Paulo',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());
   var date={};
   parts.forEach(function(p){if(p.type==='year'||p.type==='month'||p.type==='day')date[p.type]=Number(p.value)});
-  return date.year===2026&&date.month===11&&date.day>=25&&date.day<=29;
+  return date.year===2026&&date.month===11&&date.day>=22&&date.day<=29;
 }
 function refreshProductPrices(){
   var black=blackFridayActive();
@@ -27,7 +27,7 @@ function refreshProductPrices(){
   write('.prod-ps .old',brl(black?regularPrices['box-completa']:46700));
   write('.prod-ps .cur',brl(box));
   write('.prod-ps .save','Economia de '+brl(black?regularPrices['box-completa']-box:7000));
-  write('.prod-feat-badge',black?'Black Friday · 25 a 29/11':'Mais escolhida');
+  write('.prod-feat-badge',black?'Black Friday · 22 a 29/11':'Mais escolhida');
   write('.final-cta .price',brl(box));
   write('.final-cta .final-meta','de '+brl(black?regularPrices['box-completa']:46700)+' · frete grátis · postagem em até 7 dias');
   write('.sticky-info strong',brl(box));
