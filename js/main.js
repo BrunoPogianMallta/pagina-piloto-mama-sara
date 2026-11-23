@@ -27,7 +27,7 @@ function refreshProductPrices(){
   write('.prod-ps .old',brl(black?regularPrices['box-completa']:46700));
   write('.prod-ps .cur',brl(box));
   write('.prod-ps .save','Economia de '+brl(black?regularPrices['box-completa']-box:7000));
-  write('.prod-feat-badge',black?'Black Friday · 22 a 29/11':'Mais escolhida');
+  write('.prod-feat-badge','Mais escolhida');
   write('.final-cta .price',brl(box));
   write('.final-cta .final-meta','de '+brl(black?regularPrices['box-completa']:46700)+' · frete grátis · postagem em até 7 dias');
   write('.sticky-info strong',brl(box));
